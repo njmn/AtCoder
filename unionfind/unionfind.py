@@ -1,6 +1,5 @@
 n,m = map(int, input().split())
 
-
 class UnionFind:
     def __init__(self, n):
         self.parent = list(range(n))
