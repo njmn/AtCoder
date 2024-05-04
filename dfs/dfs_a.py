@@ -1,7 +1,6 @@
+# CPythonだとAC, PyPyだとMLE
 import sys
-sys.setrecursionlimit(1000000)
-
-import sys
+sys.setrecursionlimit(100000000)
 
 h,w=map(int,input().split())
 
@@ -12,6 +11,7 @@ for i in range(h):
     map_mat[i] = input_list
     if "s" in input_list:
         start = [i,input_list.index("s")]
+    del input_list
 
 visited_mat = [[False]*w for _ in range(h)]
 
@@ -33,12 +33,12 @@ def dfs(vertex):
         # 次の頂点
         next_x = vertex[0]+directions_x[direction]
         next_y = vertex[1]+ directions_y[direction]
-        # 範囲外 or 到達済み
-        if next_x < 0 or next_x >= h or next_y < 0 or next_y >= w or visited_mat[next_x][next_y]:
+        # 範囲外
+        if next_x < 0 or next_x >= h or next_y < 0 or next_y >= w:
             continue
         tar=map_mat[next_x][next_y]
-        # 壁
-        if tar == "#":
+        # 壁か到達済み
+        if tar == "#" or visited_mat[next_x][next_y] == True:
             continue
         # ゴール
         if tar == "g":
@@ -49,3 +49,4 @@ def dfs(vertex):
 dfs(start)
 
 print("No")
+
