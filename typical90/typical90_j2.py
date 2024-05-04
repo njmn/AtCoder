@@ -1,3 +1,5 @@
+# https://atcoder.jp/contests/typical90/tasks/typical90_j
+# 累積和
 n = int(input())
 point_list = [[0, 0]]
 for i in range(n):
