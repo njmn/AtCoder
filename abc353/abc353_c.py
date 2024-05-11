@@ -1,8 +1,14 @@
+# 和はlist内の2要素のすべての組み合わせを出せばいい。
+# それぞれの要素は、n-1回ずつ出てくるので、全ての和とn-1の積になる。
+
 n = int(input())
 a_list = sorted(list(map(int, input().split())))
 
 a_sum = sum(a_list)
-result_b_mod = a_sum * (n - 1)
+sum_all = a_sum * (n - 1)
+
+# ただし、設問は10**8 を超えている場合余りを求めているので、
+# 10**8を超える組み合わせの数を求める必要がある。
 
 
 def count_pairs_exceeding_limit(a_list, limit=10**8):
@@ -21,4 +27,6 @@ def count_pairs_exceeding_limit(a_list, limit=10**8):
 
 
 count = count_pairs_exceeding_limit(a_list)
-print(result_b_mod - (10**8 * count))
+
+# 10**8を超える回数は、mod 10**8 を行った回数なので、その回数 * 10**8 を引けばいい。
+print(sum_all - (10**8 * count))
